@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Encontre seu Terapeuta | ATH — Terapeutas Holísticos Credenciados</title>
+<meta name="description" content="Encontre terapeutas holísticos e psicanalistas credenciados pela ATH. Atendimento online e presencial em todo o Brasil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde: #1D6B5A;
+  --verde-med: #2A8C74;
+  --verde-claro: #E8F5F1;
+  --verde-suave: #F0FAF7;
+  --dourado: #C9A84C;
+  --dourado-claro: #FBF4E3;
+  --branco: #FFFFFF;
+  --cinza: #F7F8FA;
+  --texto: #1A2B24;
+  --texto-sec: #4A6558;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; color: var(--texto); background: var(--branco); overflow-x: hidden; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(160deg, #0D3D2E 0%, #1D6B5A 50%, #2A8C74 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 450px; height: 450px;
+  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: -80px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+  position: relative;
+  z-index: 10;
+}
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--branco);
+  letter-spacing: -0.5px;
+}
+.logo-sub { font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 2px; text-transform: uppercase; font-weight: 300; }
+.nav-badge {
+  background: rgba(201,168,76,0.2);
+  border: 1px solid rgba(201,168,76,0.4);
+  color: var(--dourado);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.hero-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 40px 40px 100px;
+  position: relative;
+  z-index: 5;
+}
+.hero-eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--dourado);
+  margin-bottom: 20px;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 6vw, 68px);
+  font-weight: 700;
+  color: var(--branco);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+  max-width: 700px;
+}
+.hero-title em { color: var(--dourado); font-style: italic; }
+.hero-desc {
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  margin-bottom: 48px;
+  max-width: 520px;
+  font-weight: 300;
+}
+
+.hero-especialidades {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+.esp-tag {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.85);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 300;
+  backdrop-filter: blur(10px);
+}
+
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.btn-wpp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: var(--branco);
+  padding: 18px 36px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 600;
+  transition: all 0.25s;
+  box-shadow: 0 8px 30px rgba(37,211,102,0.35);
+}
+.btn-wpp:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(37,211,102,0.5); }
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--branco);
+  padding: 18px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  transition: all 0.25s;
+  backdrop-filter: blur(10px);
+}
+.btn-outline:hover { background: rgba(255,255,255,0.2); }
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--branco);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-num span { color: var(--dourado); }
+.stat-label { font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 300; letter-spacing: 0.3px; }
+
+/* COMO FUNCIONA */
+.como { background: var(--cinza); padding: 80px 48px; }
+.como-inner { max-width: 1000px; margin: 0 auto; }
+.section-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--verde-med); margin-bottom: 12px; }
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  color: var(--verde);
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin-bottom: 48px;
+}
+.passos { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+.passo {
+  background: var(--branco);
+  border-radius: 20px;
+  padding: 28px 24px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.passo:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(29,107,90,0.1); }
+.passo-icon {
+  width: 56px; height: 56px;
+  background: var(--verde-claro);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 24px;
+}
+.passo h4 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--verde); margin-bottom: 8px; }
+.passo p { font-size: 14px; color: var(--texto-sec); line-height: 1.6; font-weight: 300; }
+
+/* ESPECIALIDADES */
+.espec { padding: 80px 48px; max-width: 1000px; margin: 0 auto; }
+.espec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 40px; }
+.espec-card {
+  background: var(--verde-suave);
+  border: 1px solid rgba(29,107,90,0.1);
+  border-radius: 16px;
+  padding: 20px 16px;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: default;
+}
+.espec-card:hover { background: var(--verde-claro); border-color: var(--verde-med); transform: translateY(-2px); }
+.espec-icon { font-size: 28px; margin-bottom: 10px; }
+.espec-nome { font-size: 14px; font-weight: 500; color: var(--verde); line-height: 1.4; }
+
+/* CREDENCIAIS */
+.cred { background: var(--verde); padding: 60px 48px; }
+.cred-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
+.cred-left { flex: 1; min-width: 280px; }
+.cred-left h2 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--branco); margin-bottom: 16px; line-height: 1.2; }
+.cred-left p { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.7; font-weight: 300; }
+.cred-right { display: flex; flex-direction: column; gap: 16px; flex: 0 0 320px; }
+.cred-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 16px 18px;
+  backdrop-filter: blur(10px);
+}
+.cred-dot { width: 10px; height: 10px; background: var(--dourado); border-radius: 50%; flex-shrink: 0; }
+.cred-text { font-size: 14px; color: rgba(255,255,255,0.85); font-weight: 300; line-height: 1.4; }
+
+/* CTA FINAL */
+.cta {
+  background: linear-gradient(160deg, #0D3D2E 0%, #1D6B5A 100%);
+  padding: 80px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.cta-inner { max-width: 560px; margin: 0 auto; position: relative; z-index: 2; }
+.cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 40px); font-weight: 700; color: var(--branco); margin-bottom: 16px; }
+.cta h2 em { color: var(--dourado); font-style: italic; }
+.cta p { font-size: 17px; color: rgba(255,255,255,0.65); margin-bottom: 36px; font-weight: 300; line-height: 1.7; }
+.cta-contact { margin-top: 32px; font-size: 13px; color: rgba(255,255,255,0.4); }
+.cta-contact a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+footer { background: #0a2820; padding: 28px 48px; text-align: center; }
+footer p { font-size: 13px; color: rgba(255,255,255,0.4); font-weight: 300; }
+footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+@media (max-width: 768px) {
+  .nav { padding: 16px 20px; }
+  .hero-content { padding: 30px 20px 80px; }
+  .hero-stats { gap: 32px; }
+  .como { padding: 60px 20px; }
+  .espec { padding: 60px 20px; }
+  .cred { padding: 60px 20px; }
+  .cred-inner { flex-direction: column; gap: 40px; }
+  .cred-right { flex: none; width: 100%; }
+  .cta { padding: 60px 20px; }
+  footer { padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <nav class="nav">
+    <div>
+      <div class="logo-text">ATH</div>
+      <div class="logo-sub">Associação dos Terapeutas Holísticos</div>
+    </div>
+    <div class="nav-badge">Credenciados ✓</div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Terapeutas certificados em todo o Brasil</div>
+    <h1 class="hero-title">
+      Encontre o terapeuta<br>
+      <em>ideal para você</em>
+    </h1>
+    <p class="hero-desc">
+      Conectamos você a terapeutas holísticos e psicanalistas credenciados pela ATH. Atendimento online e presencial, com profissionais verificados e formação reconhecida.
+    </p>
+
+    <div class="hero-especialidades">
+      <span class="esp-tag">Psicanálise</span>
+      <span class="esp-tag">Terapia Holística</span>
+      <span class="esp-tag">Constelação Familiar</span>
+      <span class="esp-tag">Reiki</span>
+      <span class="esp-tag">Psicossomática</span>
+      <span class="esp-tag">Hipnoterapia</span>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="https://wa.me/5511913312063?text=Olá,%20vim%20pelo%20site%20e%20quero%20encontrar%20um%20terapeuta%20credenciado%20ATH" class="btn-wpp" target="_blank">
+        💬 Falar no WhatsApp
+      </a>
+      <a href="https://ais-pre-pajr46ehm2ubepnlklzubk-33637048731.us-east1.run.app/" class="btn-outline" target="_blank">
+        🔍 Buscar terapeutas →
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">5.000<span>+</span></div>
+        <div class="stat-label">Terapeutas credenciados</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">200<span>+</span></div>
+        <div class="stat-label">Especialidades</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-label">Verificados pela ATH</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<div class="como">
+  <div class="como-inner">
+    <div class="section-eyebrow">Como funciona</div>
+    <h2 class="section-title">Simples, rápido e seguro</h2>
+    <div class="passos">
+      <div class="passo">
+        <div class="passo-icon">💬</div>
+        <h4>Fale conosco</h4>
+        <p>Entre em contato pelo WhatsApp e nos conte o que você está buscando.</p>
+      </div>
+      <div class="passo">
+        <div class="passo-icon">🔍</div>
+        <h4>Indicação personalizada</h4>
+        <p>Indicamos terapeutas credenciados alinhados com suas necessidades.</p>
+      </div>
+      <div class="passo">
+        <div class="passo-icon">📅</div>
+        <h4>Agende sua sessão</h4>
+        <p>Escolha o terapeuta e agende sua primeira sessão diretamente.</p>
+      </div>
+      <div class="passo">
+        <div class="passo-icon">🌿</div>
+        <h4>Inicie sua jornada</h4>
+        <p>Comece seu processo terapêutico com um profissional de confiança.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ESPECIALIDADES -->
+<div class="espec">
+  <div class="section-eyebrow">Especialidades disponíveis</div>
+  <h2 class="section-title">Encontre o cuidado<br>que você precisa</h2>
+  <div class="espec-grid">
+    <div class="espec-card"><div class="espec-icon">🧠</div><div class="espec-nome">Psicanálise</div></div>
+    <div class="espec-card"><div class="espec-icon">🌿</div><div class="espec-nome">Terapia Holística</div></div>
+    <div class="espec-card"><div class="espec-icon">⭐</div><div class="espec-nome">Constelação Familiar</div></div>
+    <div class="espec-card"><div class="espec-icon">✋</div><div class="espec-nome">Reiki</div></div>
+    <div class="espec-card"><div class="espec-icon">💫</div><div class="espec-nome">Psicossomática</div></div>
+    <div class="espec-card"><div class="espec-icon">🌙</div><div class="espec-nome">Hipnoterapia</div></div>
+    <div class="espec-card"><div class="espec-icon">🌸</div><div class="espec-nome">Florais de Bach</div></div>
+    <div class="espec-card"><div class="espec-icon">🧘</div><div class="espec-nome">Mindfulness</div></div>
+    <div class="espec-card"><div class="espec-icon">📿</div><div class="espec-nome">Naturopatia</div></div>
+    <div class="espec-card"><div class="espec-icon">💚</div><div class="espec-nome">Psicanálise Cristã</div></div>
+  </div>
+</div>
+
+<!-- CREDENCIAIS -->
+<div class="cred">
+  <div class="cred-inner">
+    <div class="cred-left">
+      <h2>Por que escolher um terapeuta credenciado pela ATH?</h2>
+      <p>A ATH é a associação profissional de referência para terapeutas holísticos no Brasil. Todos os nossos credenciados passam por um processo rigoroso de verificação.</p>
+    </div>
+    <div class="cred-right">
+      <div class="cred-item"><div class="cred-dot"></div><div class="cred-text">Formação verificada e documentada pela ATH</div></div>
+      <div class="cred-item"><div class="cred-dot"></div><div class="cred-text">Carteira profissional com QR Code de autenticação</div></div>
+      <div class="cred-item"><div class="cred-dot"></div><div class="cred-text">Código de ética e conduta profissional</div></div>
+      <div class="cred-item"><div class="cred-dot"></div><div class="cred-text">Atualização contínua e cursos validados</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<section class="cta">
+  <div class="cta-inner">
+    <h2>Pronto para começar<br><em>sua jornada?</em></h2>
+    <p>Fale conosco pelo WhatsApp e encontramos o terapeuta ideal para você em poucos minutos.</p>
+    <a href="https://wa.me/5511913312063?text=Olá,%20vim%20pelo%20site%20e%20quero%20encontrar%20um%20terapeuta%20credenciado%20ATH" class="btn-wpp" target="_blank">
+      💬 Falar no WhatsApp agora
+    </a>
+    <div class="cta-contact">
+      <a href="mailto:contato@ath.org.br">contato@ath.org.br</a> • (11) 91331-2063 • ath.org.br
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 ATH — Associação dos Terapeutas Holísticos • <a href="https://www.ath.org.br/politicas-do-site">Política de Privacidade</a></p>
+</footer>
+
+</body>
+</html>

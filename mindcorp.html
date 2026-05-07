@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindCorp Pro — Implementação NR-1 para Empresas | ATH</title>
+<meta name="description" content="Sua empresa ainda não se adequou à NR-1? O MindCorp Pro implementa GRO, PGR e documentação legal completa. Fale com especialista agora.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --azul: #0A3D6B;
+  --azul-med: #185FA5;
+  --azul-claro: #E6F1FB;
+  --verde: #1D9E75;
+  --verde-claro: #E1F5EE;
+  --amarelo: #F5C842;
+  --branco: #FFFFFF;
+  --cinza: #F7F9FC;
+  --texto: #1A2332;
+  --texto-sec: #4A5568;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; color: var(--texto); background: var(--branco); overflow-x: hidden; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--azul) 0%, #0d4f8c 60%, #1a6bb5 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(29,158,117,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -150px; left: -100px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(245,200,66,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  position: relative;
+  z-index: 10;
+}
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-text { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--branco); letter-spacing: -0.5px; }
+.logo-sub { font-size: 11px; color: rgba(255,255,255,0.6); font-weight: 300; letter-spacing: 1px; text-transform: uppercase; }
+.nav-cta {
+  background: var(--verde);
+  color: var(--branco);
+  padding: 10px 22px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: #17876A; transform: translateY(-1px); }
+
+.hero-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 40px 40px 80px;
+  position: relative;
+  z-index: 5;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  gap: 60px;
+}
+.hero-left { flex: 1; }
+.alert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245,200,66,0.15);
+  border: 1px solid rgba(245,200,66,0.4);
+  color: var(--amarelo);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,200,66,0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(245,200,66,0); }
+}
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 800;
+  color: var(--branco);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+.hero-title span { color: var(--amarelo); }
+.hero-desc {
+  font-size: 17px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 480px;
+  font-weight: 300;
+}
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--verde);
+  color: var(--branco);
+  padding: 16px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.25s;
+  box-shadow: 0 8px 30px rgba(29,158,117,0.4);
+}
+.btn-primary:hover { background: #17876A; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(29,158,117,0.5); }
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--branco);
+  padding: 16px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+  transition: all 0.25s;
+  backdrop-filter: blur(10px);
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.2); }
+
+.hero-right { flex: 0 0 360px; }
+.hero-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px;
+  padding: 32px;
+  backdrop-filter: blur(20px);
+}
+.hero-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--branco);
+  margin-bottom: 20px;
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.check-icon {
+  width: 22px; height: 22px;
+  background: var(--verde);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+.check-text { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.5; font-weight: 300; }
+.check-text strong { color: var(--branco); font-weight: 500; }
+.hero-card-footer {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+}
+
+/* URGENCIA */
+.urgencia {
+  background: var(--amarelo);
+  padding: 16px 40px;
+  text-align: center;
+}
+.urgencia p {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--azul);
+  letter-spacing: 0.3px;
+}
+
+/* COMO FUNCIONA */
+.section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--verde);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  color: var(--azul);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+.section-desc { font-size: 17px; color: var(--texto-sec); line-height: 1.7; max-width: 580px; font-weight: 300; }
+
+.etapas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 48px; }
+.etapa {
+  background: var(--cinza);
+  border-radius: 20px;
+  padding: 28px 24px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.etapa:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(10,61,107,0.1); }
+.etapa-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--azul-claro);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.etapa h4 { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; color: var(--azul); margin-bottom: 8px; }
+.etapa p { font-size: 14px; color: var(--texto-sec); line-height: 1.6; font-weight: 300; }
+.etapa-tag {
+  display: inline-block;
+  background: var(--verde-claro);
+  color: var(--verde);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-top: 14px;
+  letter-spacing: 0.3px;
+}
+
+/* PLANOS */
+.planos-section { background: var(--cinza); padding: 80px 40px; }
+.planos-inner { max-width: 1100px; margin: 0 auto; }
+.planos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 48px; }
+.plano {
+  background: var(--branco);
+  border-radius: 24px;
+  padding: 32px 28px;
+  border: 2px solid transparent;
+  transition: all 0.25s;
+  position: relative;
+}
+.plano:hover { border-color: var(--azul-med); box-shadow: 0 20px 40px rgba(10,61,107,0.1); }
+.plano.destaque {
+  background: var(--azul);
+  border-color: var(--azul);
+  transform: scale(1.03);
+}
+.destaque-badge {
+  position: absolute;
+  top: -14px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--amarelo);
+  color: var(--azul);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 16px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.plano-nome { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+.plano .destaque .plano-nome { color: var(--branco); }
+.plano-tamanho { font-size: 13px; color: var(--texto-sec); margin-bottom: 20px; font-weight: 300; }
+.plano.destaque .plano-tamanho { color: rgba(255,255,255,0.6); }
+.plano-preco { font-family: 'Syne', sans-serif; font-size: 38px; font-weight: 800; color: var(--azul); margin-bottom: 4px; }
+.plano.destaque .plano-preco { color: var(--amarelo); }
+.plano-preco-desc { font-size: 12px; color: var(--texto-sec); margin-bottom: 24px; font-weight: 300; }
+.plano.destaque .plano-preco-desc { color: rgba(255,255,255,0.5); }
+.plano-divider { height: 1px; background: var(--cinza); margin-bottom: 20px; }
+.plano.destaque .plano-divider { background: rgba(255,255,255,0.15); }
+.plano-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 13px; color: var(--texto-sec); font-weight: 300; line-height: 1.5; }
+.plano.destaque .plano-item { color: rgba(255,255,255,0.8); }
+.plano-item::before { content: '✓'; color: var(--verde); font-weight: 700; flex-shrink: 0; }
+.plano.destaque .plano-item::before { color: var(--amarelo); }
+.plano-btn {
+  display: block;
+  text-align: center;
+  margin-top: 24px;
+  padding: 14px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+  background: var(--azul-claro);
+  color: var(--azul);
+}
+.plano.destaque .plano-btn { background: var(--verde); color: var(--branco); }
+.plano-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* PAGAMENTO */
+.pagamento { max-width: 1100px; margin: 0 auto; padding: 60px 40px; }
+.pag-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 32px; }
+.pag-card { background: var(--cinza); border-radius: 16px; padding: 20px; text-align: center; }
+.pag-card .pag-modo { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--azul); margin-bottom: 6px; }
+.pag-card .pag-desc { font-size: 13px; color: var(--texto-sec); line-height: 1.5; font-weight: 300; margin-bottom: 10px; }
+.pag-card .pag-vantagem { font-size: 12px; font-weight: 600; color: var(--verde); }
+
+/* CTA FINAL */
+.cta-final {
+  background: linear-gradient(135deg, var(--azul) 0%, #0d4f8c 100%);
+  padding: 80px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-final::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(29,158,117,0.2) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.cta-final-inner { max-width: 600px; margin: 0 auto; position: relative; z-index: 2; }
+.cta-final h2 { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: var(--branco); margin-bottom: 16px; letter-spacing: -0.5px; }
+.cta-final p { font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 36px; font-weight: 300; line-height: 1.7; }
+.cta-final-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-wpp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: var(--branco);
+  padding: 18px 36px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 700;
+  transition: all 0.25s;
+  box-shadow: 0 8px 30px rgba(37,211,102,0.4);
+}
+.btn-wpp:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(37,211,102,0.5); }
+
+/* FOOTER */
+footer { background: var(--azul); padding: 30px 40px; text-align: center; }
+footer p { font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 300; }
+footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav { padding: 16px 20px; }
+  .hero-content { flex-direction: column; padding: 30px 20px 60px; gap: 40px; }
+  .hero-right { flex: none; width: 100%; }
+  .section { padding: 60px 20px; }
+  .planos-section { padding: 60px 20px; }
+  .plano.destaque { transform: scale(1); }
+  .pagamento { padding: 40px 20px; }
+  .cta-final { padding: 60px 20px; }
+  footer { padding: 24px 20px; }
+  .urgencia { padding: 14px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <nav class="nav">
+    <div class="logo">
+      <div>
+        <div class="logo-text">MindCorp Pro</div>
+        <div class="logo-sub">by ATH</div>
+      </div>
+    </div>
+    <a href="https://wa.me/5511913312063?text=Olá,%20vim%20pelo%20site%20e%20quero%20implementar%20a%20NR-1%20na%20minha%20empresa" class="nav-cta" target="_blank">Falar com Especialista</a>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="alert-badge">
+        ⚠ NR-1 em vigor desde 2025
+      </div>
+      <h1 class="hero-title">
+        Sua empresa está<br>
+        adequada à <span>NR-1</span>?
+      </h1>
+      <p class="hero-desc">
+        O Ministério do Trabalho já está fiscalizando. Empresas sem conformidade nos riscos psicossociais estão sujeitas a multas e passivo trabalhista. O MindCorp Pro implementa tudo do zero.
+      </p>
+      <div class="hero-ctas">
+        <a href="https://wa.me/5511913312063?text=Olá,%20vim%20pelo%20site%20e%20quero%20implementar%20a%20NR-1%20na%20minha%20empresa" class="btn-primary" target="_blank">
+          💬 Falar com Especialista
+        </a>
+        <a href="#planos" class="btn-secondary">
+          Ver planos →
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-card">
+        <h3>O que o MindCorp Pro entrega:</h3>
+        <div class="check-item">
+          <div class="check-icon">✓</div>
+          <div class="check-text"><strong>GRO e PGR completos</strong> — documentação legal exigida pelo MTE</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">✓</div>
+          <div class="check-text"><strong>Canal de escuta ativa</strong> — estruturado e documentado</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">✓</div>
+          <div class="check-text"><strong>Diagnóstico psicossocial</strong> — mapeamento completo da equipe</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">✓</div>
+          <div class="check-text"><strong>Dossiê para fiscalização</strong> — pronto para apresentar ao MTE</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">✓</div>
+          <div class="check-text"><strong>Implementação em até 60 dias</strong> — 100% online</div>
+        </div>
+        <div class="hero-card-footer">
+          Rede de especialistas credenciados pela ATH
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCIA -->
+<div class="urgencia">
+  <p>⚠ Call centers e financeiras estão na lista prioritária de fiscalização do MTE em 2025 — não espere a autuação chegar</p>
+</div>
+
+<!-- COMO FUNCIONA -->
+<div class="section">
+  <div class="section-label">Como funciona</div>
+  <h2 class="section-title">Implementação completa<br>em 4 etapas</h2>
+  <p class="section-desc">Assumimos toda a parte técnica. Sua empresa não precisa ter estrutura prévia de RH ou conhecimento da norma.</p>
+
+  <div class="etapas">
+    <div class="etapa">
+      <div class="etapa-num">01</div>
+      <h4>Diagnóstico</h4>
+      <p>Mapeamento completo dos riscos psicossociais da equipe com avaliação do clima organizacional.</p>
+      <span class="etapa-tag">Semana 1-2</span>
+    </div>
+    <div class="etapa">
+      <div class="etapa-num">02</div>
+      <h4>Elaboração</h4>
+      <p>GRO, PGR e toda a documentação legal exigida pelo Ministério do Trabalho, pronta para auditorias.</p>
+      <span class="etapa-tag">Semana 2-4</span>
+    </div>
+    <div class="etapa">
+      <div class="etapa-num">03</div>
+      <h4>Implementação</h4>
+      <p>Canal de escuta ativa, sessões individuais de apoio psicanalítico e treinamentos para líderes.</p>
+      <span class="etapa-tag">Semana 4-8</span>
+    </div>
+    <div class="etapa">
+      <div class="etapa-num">04</div>
+      <h4>Monitoramento</h4>
+      <p>Relatórios periódicos, atualização contínua da documentação e suporte pós-implementação.</p>
+      <span class="etapa-tag">Contínuo</span>
+    </div>
+  </div>
+</div>
+
+<!-- PLANOS -->
+<div class="planos-section" id="planos">
+  <div class="planos-inner">
+    <div class="section-label">Planos e investimento</div>
+    <h2 class="section-title">Escolha o plano<br>ideal para sua empresa</h2>
+    <p class="section-desc">Todos os planos incluem documentação completa, equipe técnica especializada e a rede de terapeutas credenciados ATH.</p>
+
+    <div class="planos">
+      <div class="plano">
+        <div class="plano-nome" style="color:var(--azul)">Essencial</div>
+        <div class="plano-tamanho">Até 50 colaboradores</div>
+        <div class="plano-preco" style="color:var(--azul)">R$ 12.000</div>
+        <div class="plano-preco-desc">pagamento único</div>
+        <div class="plano-divider"></div>
+        <div class="plano-item">Diagnóstico psicossocial</div>
+        <div class="plano-item">PGR completo (NR-1 + NR-9)</div>
+        <div class="plano-item">PCMSO + ASOs</div>
+        <div class="plano-item">Inventário de riscos + PDCA</div>
+        <div class="plano-item">Treinamento online para líderes</div>
+        <div class="plano-item">Dossiê documental para MTE</div>
+        <a href="https://wa.me/5511913312063?text=Olá,%20quero%20o%20plano%20Essencial%20do%20MindCorp%20Pro" class="plano-btn" target="_blank">Contratar Essencial</a>
+      </div>
+
+      <div class="plano destaque">
+        <div class="destaque-badge">Mais contratado</div>
+        <div class="plano-nome" style="color:var(--branco)">Completo</div>
+        <div class="plano-tamanho">50 a 100 colaboradores</div>
+        <div class="plano-preco">R$ 22.000</div>
+        <div class="plano-preco-desc">pagamento único ou parcelado</div>
+        <div class="plano-divider"></div>
+        <div class="plano-item">Tudo do plano Essencial</div>
+        <div class="plano-item">Engenheiro SST + laudos técnicos</div>
+        <div class="plano-item">Treinamento presencial CIPA</div>
+        <div class="plano-item">Rodas de saúde presenciais (2x)</div>
+        <div class="plano-item">Parecer jurídico trabalhista</div>
+        <div class="plano-item">3 meses suporte pós-implementação</div>
+        <a href="https://wa.me/5511913312063?text=Olá,%20quero%20o%20plano%20Completo%20do%20MindCorp%20Pro" class="plano-btn" target="_blank">Contratar Completo</a>
+      </div>
+
+      <div class="plano">
+        <div class="plano-nome" style="color:var(--azul)">Corporativo</div>
+        <div class="plano-tamanho">100 a 200 colaboradores</div>
+        <div class="plano-preco" style="color:var(--azul)">R$ 42.000</div>
+        <div class="plano-preco-desc">pagamento único ou parcelado</div>
+        <div class="plano-divider"></div>
+        <div class="plano-item">Tudo do plano Completo</div>
+        <div class="plano-item">Pesquisa de clima quantitativa</div>
+        <div class="plano-item">Programa bem-estar contínuo</div>
+        <div class="plano-item">6 meses suporte pós-implementação</div>
+        <div class="plano-item">SLA dedicado e relatórios mensais</div>
+        <a href="https://wa.me/5511913312063?text=Olá,%20quero%20o%20plano%20Corporativo%20do%20MindCorp%20Pro" class="plano-btn" target="_blank">Contratar Corporativo</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGAMENTO -->
+<div class="pagamento">
+  <div class="section-label">Condições de pagamento</div>
+  <h2 class="section-title" style="font-size:28px">Formas de pagamento flexíveis</h2>
+  <div class="pag-cards">
+    <div class="pag-card">
+      <div class="pag-modo">À vista</div>
+      <div class="pag-desc">100% na assinatura do contrato</div>
+      <div class="pag-vantagem">5% de desconto sobre o valor total</div>
+    </div>
+    <div class="pag-card">
+      <div class="pag-modo">2x</div>
+      <div class="pag-desc">50% na assinatura + 50% na entrega do PGR</div>
+      <div class="pag-vantagem">Sem acréscimo</div>
+    </div>
+    <div class="pag-card">
+      <div class="pag-modo">3x</div>
+      <div class="pag-desc">Parcelamento mensal durante a implementação</div>
+      <div class="pag-vantagem">Disponível para planos Completo e Corporativo</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="cta-final-inner">
+    <h2>Não espere a fiscalização chegar</h2>
+    <p>Agende uma conversa gratuita com um especialista e descubra como implementar a NR-1 na sua empresa de forma rápida, completa e sem complicações.</p>
+    <div class="cta-final-btns">
+      <a href="https://wa.me/5511913312063?text=Olá,%20vim%20pelo%20site%20MindCorp%20Pro%20e%20quero%20implementar%20a%20NR-1%20na%20minha%20empresa" class="btn-wpp" target="_blank">
+        💬 Falar no WhatsApp agora
+      </a>
+    </div>
+    <p style="margin-top:20px; font-size:13px; color:rgba(255,255,255,0.4)">ath.org.br/mindcorp • contato@ath.org.br • (11) 91331-2063</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 ATH — Associação dos Terapeutas Holísticos • <a href="https://www.ath.org.br/politicas-do-site">Política de Privacidade</a></p>
+</footer>
+
+</body>
+</html>
